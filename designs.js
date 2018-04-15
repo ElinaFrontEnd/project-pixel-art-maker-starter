@@ -9,15 +9,10 @@ const color = document.getElementById("colorPicker");
 
 // function to create grid based on user input
 function makeGrid() {
-    
-// For testing only
-    console.log(height.value, width.value, color.value);
-    
 // Remove previous grid
     while(grid.hasChildNodes()){
         grid.removeChild(grid.firstChild);
     };
-
 // Create grid based on height and with input
     for (let rows = 0; rows < height.value; rows++){
         let tr = grid.insertRow();
@@ -25,7 +20,7 @@ function makeGrid() {
             let td = tr.insertCell();
         }
     }
-}
+};
 
 // call function makeGrid when submit button pressed
 submitButton.addEventListener("click", function(evt) {
@@ -33,4 +28,13 @@ submitButton.addEventListener("click", function(evt) {
     evt.preventDefault();
     //Call makeGrid function
     makeGrid();
+});
+
+
+//add color when cell is clicked
+grid.addEventListener("click", function(evt) {
+//specify that only TD should be colored, to avoid bubbling effect on rows and grid
+    if (evt.target.nodeName === "TD") {
+        evt.target.style.backgroundColor = color.value;
+    }
 });
