@@ -1,10 +1,10 @@
 // Select color input
 
 const grid = document.getElementById("pixelCanvas");
-const submitButton = document.getElementById("submit");
 const height = document.getElementById("inputHeight");
 const width = document.getElementById("inputWidth");
 const color = document.getElementById("colorPicker");
+const submitButton = document.getElementById("submit");
 
 
 // function to create grid based on user input
@@ -37,4 +37,12 @@ grid.addEventListener("click", function(evt) {
     if (evt.target.nodeName === "TD") {
         evt.target.style.backgroundColor = color.value;
     }
+});
+
+//remove color when cell is double-clicked
+grid.addEventListener("dblclick", function(evt) {
+//specify that only TD should be set to default color, to avoid bubbling effect on rows and grid
+    if (evt.target.nodeName === "TD") {
+        evt.target.style.backgroundColor = "transparent";
+    }   
 });
